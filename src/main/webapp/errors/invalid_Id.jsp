@@ -11,6 +11,9 @@
     <title>Title</title>
 </head>
 <body>
-알 수 없는 오류 발생
+<h1>등록되지 않은 사용자입니다. ID를 확인해주세요</h1>
+<a href="/index.jsp"> 홈화면으로</a> <br/>
+<h1></h1>
+
 </body>
 </html>

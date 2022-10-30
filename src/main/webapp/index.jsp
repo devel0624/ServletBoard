@@ -11,7 +11,7 @@
     <title>$Title$</title>
   </head>
   <body>
-  <a href="loginForm.jsp"> Login  </a> <br/>
-  <a href="userRegister.jsp"> 회원가입</a> <br/>
+  <a href="/user/login.do"> Login  </a> <br/>
+  <a href="/user/register.do"> 회원가입</a> <br/>
   </body>
 </html>

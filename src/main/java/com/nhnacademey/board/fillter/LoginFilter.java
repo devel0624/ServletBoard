@@ -18,7 +18,9 @@ import java.util.stream.Collectors;
 @Slf4j
 @WebFilter(filterName = "loginFilter", urlPatterns = "/*", initParams = {
         @WebInitParam(name = "excludedUrls", value = "/\n" +
-                "/login\n")
+                "/user/login.do\n" +
+                "/user/register.do\n" +
+                "")
 })
 public class LoginFilter implements Filter {
     List<String> excludedUrls = new ArrayList<>();
@@ -26,7 +28,7 @@ public class LoginFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         String urls = filterConfig.getInitParameter("excludedUrls");
-        log.error("excludedUrls={}", urls);
+        log.info("excludedUrls={}", urls);
 
         this.excludedUrls = Arrays.stream(urls.split("\n"))
                 .map(String::trim)
@@ -36,17 +38,20 @@ public class LoginFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 
-        log.info("Login Filter Process");
 
         String requestUri = ((HttpServletRequest) servletRequest).getRequestURI();
+
+        log.info("Login Filter Process, requestUri : " + requestUri);
 
         if (excludedUrls.contains(requestUri)) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
             HttpSession session = ((HttpServletRequest) servletRequest).getSession(false);
             if (Objects.isNull(session)) {
-                ((HttpServletResponse) servletResponse).sendRedirect("/login");
+                log.info("Session isn't existed");
+                ((HttpServletResponse) servletResponse).sendRedirect("/user/login.do");
             } else {
+                log.info("Session existed");
                 filterChain.doFilter(servletRequest, servletResponse);
             }
         }

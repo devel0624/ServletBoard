@@ -1,6 +1,8 @@
 package com.nhnacademey.board;
 
-import com.nhnacademey.board.domain.UserRepository;
+import com.nhnacademey.board.domain.account.Admin;
+import com.nhnacademey.board.domain.repository.UserList;
+import com.nhnacademey.board.domain.repository.UserRepository;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -12,6 +14,19 @@ public class WebAppListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext servletContext = sce.getServletContext();
-        servletContext.setAttribute("repository", new UserRepository());
+
+        UserRepository repository = new UserList();
+
+        repository.add(
+                new Admin(
+                        "admin",
+                        "관리자",
+                        "12345"
+                )
+        );
+
+        servletContext.setAttribute("repository", repository);
+
+
     }
 }

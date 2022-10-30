@@ -11,7 +11,9 @@
     <title>Title</title>
 </head>
 <body>
+프로필 : ${user.profileFileName}<br />
 이름: ${user.name}<br />
-아이디: ${user.id}<br />
+<a href="/index.jsp"> 홈화면으로</a> <br/>
+<a href="/user/logout.do"> 로그아웃</a> <br/>
 </body>
 </html>

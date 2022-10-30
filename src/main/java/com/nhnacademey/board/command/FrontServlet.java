@@ -1,6 +1,11 @@
 package com.nhnacademey.board.command;
 
-import com.nhnacademey.board.controller.UserRegisterController;
+import com.nhnacademey.board.controller.UserViewController;
+import com.nhnacademey.board.controller.login.LoginController;
+import com.nhnacademey.board.controller.login.LoginFormController;
+import com.nhnacademey.board.controller.login.LogoutController;
+import com.nhnacademey.board.controller.register.UserRegisterController;
+import com.nhnacademey.board.controller.register.UserRegisterFormController;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.RequestDispatcher;
@@ -26,7 +31,6 @@ public class FrontServlet extends HttpServlet {
         resp.setContentType("text/html");
 
         try{
-
             Command command  = resolveCommand(req.getServletPath(), req.getMethod());
 
             String view = command.execute(req, resp);
@@ -35,14 +39,14 @@ public class FrontServlet extends HttpServlet {
                 resp.sendRedirect(view.substring(REDIRECT_PREFIX.length()));
             } else {
                 // redirect 가 아니라면 JSP에게 view 처리를 위임하고 결과를 include
-                RequestDispatcher rd = req.getRequestDispatcher(req.getServletPath());
+                RequestDispatcher rd = req.getRequestDispatcher(view);
                 rd.include(req, resp);
             }
 
         } catch (Exception e){
             log.error("",e);
             req.setAttribute("exception",e);
-            RequestDispatcher rd = req.getRequestDispatcher("/error.jsp");
+            RequestDispatcher rd = req.getRequestDispatcher("/errors/error.jsp");
             rd.forward(req,resp);
         }
     }
@@ -50,10 +54,20 @@ public class FrontServlet extends HttpServlet {
     private Command resolveCommand(String servletPath, String method) {
         Command command = null;
 
-        if ("/user/register.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
-            command = new UserRegisterController();
-        }else {
+        log.info("FrontServlet Process " + "path : " + servletPath + ", method : " + method);
 
+        if ("/user/register.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
+            command = new UserRegisterFormController();
+        }else if ("/user/register.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
+            command = new UserRegisterController();
+        }else if("/user/login.do".equals(servletPath) && "GET".equals(method)){
+            command = new LoginFormController();
+        }else if("/user/login.do".equals(servletPath) && "POST".equals(method)) {
+            command = new LoginController();
+        }else if("/user/view.do".equals(servletPath) && "GET".equals(method)) {
+            command = new UserViewController();
+        }else if("/user/logout.do".equals(servletPath) && "GET".equals(method)) {
+            command = new LogoutController();
         }
 
         return command;
