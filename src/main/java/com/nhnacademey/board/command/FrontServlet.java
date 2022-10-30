@@ -1,8 +1,10 @@
 package com.nhnacademey.board.command;
 
+import com.nhnacademey.board.controller.LanguageChangeController;
 import com.nhnacademey.board.controller.post.PostDeleteController;
 import com.nhnacademey.board.controller.post.PostRegisterController;
 import com.nhnacademey.board.controller.post.PostRegisterFormController;
+import com.nhnacademey.board.controller.user.UserDeleteController;
 import com.nhnacademey.board.controller.view.PostListViewController;
 import com.nhnacademey.board.controller.view.PostViewController;
 import com.nhnacademey.board.controller.view.UserViewController;
@@ -73,6 +75,8 @@ public class FrontServlet extends HttpServlet {
             command = new UserViewController();
         }else if("/user/logout.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
             command = new LogoutController();
+        }else if("/user/delete.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
+            command = new UserDeleteController();
         }else if("/post/listView.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
             command = new PostListViewController();
         }else if("/post/view.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
@@ -83,6 +87,8 @@ public class FrontServlet extends HttpServlet {
             command = new PostRegisterController();
         }else if("/post/delete.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
             command = new PostDeleteController();
+        }else if("/lang/change.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
+            command = new LanguageChangeController();
         }
 
         return command;

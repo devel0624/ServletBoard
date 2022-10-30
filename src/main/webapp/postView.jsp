@@ -6,17 +6,21 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <html>
 <head>
-    <title>Title</title>
+    <fmt:setLocale value='<%= application.getAttribute("lang") %>'/>
+    <fmt:setBundle basename="message" var="message" />
+    <title> ${post.getTitle()} </title>
 </head>
 <body>
-제목 : ${post.getTitle()}<br />
-작성시간 : ${post.getWriteTime()}<br />
-작성자: ${post.getWriterUserId()}<br />
-내용: ${post.getContent()}<br />
-<a href="/post/delete.do?id=${post.getId()}"> 삭제</a> <br/>
-<a href="/post/listView.do"> 글 목록으로</a> <br/>
-<a href="/"> 홈화면으로</a> <br/>
+<fmt:message key="title" bundle="${message}"/> : ${post.getTitle()}<br />
+<fmt:message key="writeTime" bundle="${message}"/> : ${post.getWriteTime()}<br />
+<fmt:message key="writer" bundle="${message}"/> : ${post.getWriterUserId()}<br />
+<fmt:message key="content" bundle="${message}"/> : ${post.getContent()}<br />
+<a href="/post/delete.do?id=${post.getId()}"> <fmt:message key="delete" bundle="${message}"/></a> <br/>
+<a href="/post/listView.do"> <fmt:message key="posts" bundle="${message}"/> </a> <br/>
+<a href="/"> <fmt:message key="home" bundle="${message}"/> </a> <br/>
 </body>
 </html>

@@ -7,7 +7,7 @@ public class Client implements User {
     String password;
     String profileFileName;
 
-    public Client(String id, String name, String password) {
+    public Client(String name, String id, String password) {
         this.id = id;
         this.name = name;
         this.password = password;

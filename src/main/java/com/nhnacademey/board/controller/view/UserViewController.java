@@ -32,6 +32,6 @@ public class UserViewController implements Command {
             return "/userView.jsp";
         }
 
-        return "/404.jsp";
+        return "/errors/404.jsp";
     }
 }

@@ -7,12 +7,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
-    <title>POST</title>
+    <fmt:setLocale value='<%= application.getAttribute("lang") %>'/>
+    <fmt:setBundle basename="message" var="message" />
+    <title> <fmt:message key="posts" bundle="${message}" /> </title>
 </head>
 <body>
-번호 제목 <br/>
+<fmt:message key="number" bundle="${message}" /> <fmt:message key="title" bundle="${message}" /> <br/>
 <%
     PostRepository postRepository = (PostRepository) pageContext.getServletContext().getAttribute("postRepository");
 
@@ -26,14 +29,14 @@
           postNum = "" + post.getId();
       }
 %>
-    <%= "<p>&nbsp"%>
+    <%= "&nbsp"%>
     <%=postNum%>
     <%=href%>
     <%= "<br/>" %>
 <%}%>
 <br/>
-<a href="/post/register.do"> 글 작성하기</a> <br/>
-<a href="/index.jsp"> 홈화면으로</a> <br/>
+<a href="/post/register.do">  <fmt:message key="postRegist" bundle="${message}"/> </a> <br/>
+<a href="/"> <fmt:message key="home" bundle="${message}"/> </a> <br/>
 
 </body>
 </html>

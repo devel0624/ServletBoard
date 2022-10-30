@@ -6,7 +6,7 @@ public class Admin implements User, Administrator{
     String password;
     String profileFileName;
 
-    public Admin(String id, String name, String password) {
+    public Admin(String name, String id, String password) {
         this.id = id;
         this.name = name;
         this.password = password;

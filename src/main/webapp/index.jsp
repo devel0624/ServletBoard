@@ -6,13 +6,17 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
-  <head>
-    <title>$Title$</title>
-  </head>
+<head>
+  <fmt:setLocale value='<%= application.getAttribute("lang") %>'/>
+  <fmt:setBundle basename="message" var="message" />
+  <title><fmt:message key="index" bundle="${message}" /></title>
+</head>
   <body>
-  <a href="/user/login.do"> Login  </a> <br/>
-  <a href="/user/register.do"> 회원가입</a> <br/>
-  <a href="/post/listView.do">게시글</a> <br/>
+  <a href="/user/login.do"> <fmt:message key="login" bundle="${message}" />  </a> <br/>
+  <a href="/user/register.do"> <fmt:message key="register" bundle="${message}" /></a> <br/>
+  <a href="/post/listView.do"> <fmt:message key="posts" bundle="${message}"/> </a> <br/>
+  <a href="/lang/change.do"> <fmt:message key="changeLanguage" bundle="${message}"/> </a> <br/>
   </body>
 </html>

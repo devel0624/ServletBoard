@@ -24,8 +24,8 @@ public class WebAppListener implements ServletContextListener {
 
         userRepository.add(
                 new Admin(
-                        "admin",
                         "관리자",
+                        "admin",
                         "12345"
                 )
         );
@@ -40,6 +40,8 @@ public class WebAppListener implements ServletContextListener {
 
         long postId = postRepository.register(post);
         post.setId(postId);
+
+        servletContext.setAttribute("lang","en");
 
         servletContext.setAttribute("userRepository", userRepository);
         servletContext.setAttribute("postRepository", postRepository);

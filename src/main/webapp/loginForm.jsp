@@ -6,17 +6,22 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
-<%--    언어 처리 필--%>
-    <title>Login Form</title>
+    <fmt:setLocale value='<%= application.getAttribute("lang") %>'/>
+    <fmt:setBundle basename="message" var="message" />
+    <title><fmt:message key="loginForm" bundle="${message}" /></title>
 </head>
+
 <body>
 <form method="post" action="/user/login.do">
-    아이디: <input type="text" name="id" /><br/>
-    비밀번호: <input type="text" name="pw" /><br/>
-    <input type="submit"/><br/>
-    <a href="/index.jsp"> 홈화면으로</a> <br/>
+    <fmt:message key="id" bundle="${message}" /> : <input type="text" name="id" /><br/>
+    <fmt:message key="pw" bundle="${message}" /> : <input type="text" name="pw" /><br/>
+    <input type="submit" value="<fmt:message key="submit" bundle="${message}" />"/>  <br/>
+    <a href="/"> <fmt:message key="home" bundle="${message}"/> </a> <br/>
 </form>
 </body>
+
 </html>
+

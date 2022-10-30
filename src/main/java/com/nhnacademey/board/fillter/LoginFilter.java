@@ -19,8 +19,9 @@ import java.util.stream.Collectors;
 @WebFilter(filterName = "loginFilter", urlPatterns = "/*", initParams = {
         @WebInitParam(name = "excludedUrls", value = "/\n" +
                 "/user/login.do\n" +
+                "/lang/change.do\n" +
                 "/user/register.do\n" +
-                "/index.jsp")
+                "/index.jsp\n")
 })
 public class LoginFilter implements Filter {
     List<String> excludedUrls = new ArrayList<>();

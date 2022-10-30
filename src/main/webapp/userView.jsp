@@ -6,14 +6,20 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <html>
 <head>
-    <title>Title</title>
+    <fmt:setLocale value='<%= application.getAttribute("lang") %>'/>
+    <fmt:setBundle basename="message" var="message" />
+    <title> <fmt:message key="profile" bundle="${message}" /> </title>
 </head>
 <body>
-프로필 : ${user.profileFileName}<br />
-이름: ${user.name}<br />
-<a href="/index.jsp"> 홈화면으로</a> <br/>
-<a href="/user/logout.do"> 로그아웃</a> <br/>
+<fmt:message key="profile" bundle="${message}" /> : ${user.profileFileName}<br />
+<fmt:message key="name" bundle="${message}" /> : ${user.name}<br />
+<a href="/user/logout.do"> <fmt:message key="logout" bundle="${message}"/></a> <br/>
+<a href="/user/delete.do?id=${user.id}"> <fmt:message key="withdrawal" bundle="${message}"/></a> <br/>
+<a href="/index.jsp"> <fmt:message key="home" bundle="${message}"/> </a> <br/>
+
 </body>
 </html>
