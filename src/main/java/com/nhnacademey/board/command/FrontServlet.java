@@ -1,11 +1,16 @@
 package com.nhnacademey.board.command;
 
-import com.nhnacademey.board.controller.UserViewController;
+import com.nhnacademey.board.controller.post.PostDeleteController;
+import com.nhnacademey.board.controller.post.PostRegisterController;
+import com.nhnacademey.board.controller.post.PostRegisterFormController;
+import com.nhnacademey.board.controller.view.PostListViewController;
+import com.nhnacademey.board.controller.view.PostViewController;
+import com.nhnacademey.board.controller.view.UserViewController;
 import com.nhnacademey.board.controller.login.LoginController;
 import com.nhnacademey.board.controller.login.LoginFormController;
 import com.nhnacademey.board.controller.login.LogoutController;
-import com.nhnacademey.board.controller.register.UserRegisterController;
-import com.nhnacademey.board.controller.register.UserRegisterFormController;
+import com.nhnacademey.board.controller.user.UserRegisterController;
+import com.nhnacademey.board.controller.user.UserRegisterFormController;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.RequestDispatcher;
@@ -60,14 +65,24 @@ public class FrontServlet extends HttpServlet {
             command = new UserRegisterFormController();
         }else if ("/user/register.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
             command = new UserRegisterController();
-        }else if("/user/login.do".equals(servletPath) && "GET".equals(method)){
+        }else if("/user/login.do".equals(servletPath) && "GET".equalsIgnoreCase(method)){
             command = new LoginFormController();
-        }else if("/user/login.do".equals(servletPath) && "POST".equals(method)) {
+        }else if("/user/login.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
             command = new LoginController();
-        }else if("/user/view.do".equals(servletPath) && "GET".equals(method)) {
+        }else if("/user/view.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
             command = new UserViewController();
-        }else if("/user/logout.do".equals(servletPath) && "GET".equals(method)) {
+        }else if("/user/logout.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
             command = new LogoutController();
+        }else if("/post/listView.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
+            command = new PostListViewController();
+        }else if("/post/view.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
+            command = new PostViewController();
+        }else if("/post/register.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
+            command = new PostRegisterFormController();
+        }else if("/post/register.do".equals(servletPath) && "POST".equalsIgnoreCase(method)) {
+            command = new PostRegisterController();
+        }else if("/post/delete.do".equals(servletPath) && "GET".equalsIgnoreCase(method)) {
+            command = new PostDeleteController();
         }
 
         return command;

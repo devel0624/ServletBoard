@@ -19,9 +19,9 @@ public class LoginController implements Command {
         String id = request.getParameter("id");
         String pw = request.getParameter("pw");
 
-        UserRepository repository = (UserRepository) request.getServletContext().getAttribute("repository");
+        UserRepository userRepository = (UserRepository) request.getServletContext().getAttribute("userRepository");
 
-        User user = repository.getUser(id);
+        User user = userRepository.getUser(id);
 
         if(Objects.nonNull(user)) {
             if (user.getPassword().equals(pw)) {

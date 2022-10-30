@@ -1,4 +1,4 @@
-package com.nhnacademey.board.controller.register;
+package com.nhnacademey.board.controller.user;
 
 import com.nhnacademey.board.command.Command;
 

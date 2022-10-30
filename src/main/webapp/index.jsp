@@ -13,5 +13,6 @@
   <body>
   <a href="/user/login.do"> Login  </a> <br/>
   <a href="/user/register.do"> 회원가입</a> <br/>
+  <a href="/post/listView.do">게시글</a> <br/>
   </body>
 </html>

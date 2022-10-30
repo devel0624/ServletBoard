@@ -24,7 +24,7 @@ public class UserList implements UserRepository{
     }
     @Override
     public void remove(String id){
-
+        users.remove(id);
     }
 
     @Override

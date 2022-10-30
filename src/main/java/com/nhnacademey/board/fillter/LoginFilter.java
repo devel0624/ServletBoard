@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
         @WebInitParam(name = "excludedUrls", value = "/\n" +
                 "/user/login.do\n" +
                 "/user/register.do\n" +
-                "")
+                "/index.jsp")
 })
 public class LoginFilter implements Filter {
     List<String> excludedUrls = new ArrayList<>();
@@ -47,7 +47,8 @@ public class LoginFilter implements Filter {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
             HttpSession session = ((HttpServletRequest) servletRequest).getSession(false);
-            if (Objects.isNull(session)) {
+
+            if (Objects.isNull(session.getAttribute("id"))) {
                 log.info("Session isn't existed");
                 ((HttpServletResponse) servletResponse).sendRedirect("/user/login.do");
             } else {

@@ -1,4 +1,4 @@
-package com.nhnacademey.board.controller.register;
+package com.nhnacademey.board.controller.user;
 
 import com.nhnacademey.board.command.Command;
 import com.nhnacademey.board.domain.account.Client;
@@ -19,8 +19,8 @@ public class UserRegisterController implements Command {
                 request.getParameter("pw")
         );
 
-        UserRepository repository = (UserRepository) request.getServletContext().getAttribute("repository");
-        repository.add(user);
+        UserRepository userRepository = (UserRepository) request.getServletContext().getAttribute("userRepository");
+        userRepository.add(user);
 
         log.info("Register Success : " + user.getId());
 

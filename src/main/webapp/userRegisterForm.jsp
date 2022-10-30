@@ -16,7 +16,7 @@
     이름: <input type="text" name="name" /><br/>
     아이디: <input type="text" name="id" /><br/>
     비밀번호: <input type="text" name="pw" /><br/>
-    <input type="submit"/>
+    <input type="submit"/><br/>
     <a href="/index.jsp"> 홈화면으로</a> <br/>
 </form>
 

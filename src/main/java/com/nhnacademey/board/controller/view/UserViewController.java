@@ -1,8 +1,9 @@
-package com.nhnacademey.board.controller;
+package com.nhnacademey.board.controller.view;
 
 import com.nhnacademey.board.command.Command;
 import com.nhnacademey.board.domain.account.User;
 import com.nhnacademey.board.domain.repository.UserList;
+import com.nhnacademey.board.domain.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.ServletContext;
@@ -19,11 +20,11 @@ public class UserViewController implements Command {
 
         ServletContext servletContext = request.getServletContext();
 
-        UserList repository = (UserList) servletContext.getAttribute("repository");
+        UserRepository userRepository = (UserList) servletContext.getAttribute("userRepository");
 
         String id = request.getParameter("id");
 
-        User user = repository.getUser(id);
+        User user = userRepository.getUser(id);
 
         if(Objects.nonNull(user)){ // repository에 유저가 있으면
             log.info("UserViewControl , Found User");
